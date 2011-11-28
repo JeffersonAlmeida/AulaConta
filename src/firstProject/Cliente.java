@@ -44,5 +44,9 @@ public class Cliente {
 	public void setCpf(String cpf) {
 		this.cpf = cpf;
 	}
+	
+	public void imprimeCliente(){
+		System.out.println(toString());
+	}
 
 }
