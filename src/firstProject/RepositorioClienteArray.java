@@ -42,6 +42,8 @@ public class RepositorioClienteArray {
 		 return false;
 	}
 	
+	
+	
 	public Cliente procurar(String cpf){
 		int retorno = procurarIndice(cpf);
 		Cliente cliente = null;

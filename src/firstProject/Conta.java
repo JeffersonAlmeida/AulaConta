@@ -2,7 +2,7 @@ package firstProject;
 
 public class Conta {
 	
-	private long numero;
+	private String numero;
 	private double saldo;
 	private Cliente cliente;
 	
@@ -12,13 +12,13 @@ public class Conta {
 	}
 	
 
-	public Conta(long n, double s, Cliente c){
+	public Conta(String n, double s, Cliente c){
 		this.numero = n;
 		this.saldo = s;
 		this.cliente = c;
 	}
 	
-	public Conta(long n, Cliente c){
+	public Conta(String n, Cliente c){
 		this.numero = n;
 		this.cliente = c;
 	}
@@ -32,7 +32,7 @@ public class Conta {
 	    Conta conta = new Conta();
 	    Cliente  cliente = new Cliente("JJ","12345678910");
 	    conta.setCliente(cliente);
-	    conta.setNumero(1);
+	    conta.setNumero("1");
 	    conta.setSaldo(10.0);
 	    conta.creditar(10.0);
 	    System.out.println(conta.toString());
@@ -41,8 +41,8 @@ public class Conta {
 	    
 	    System.out.println("Tarefa Parte II ");
 	    
-	    Conta c2 = new Conta(2,5.0,new Cliente("PEDRO", "12345678091"));
-	    Conta c3 = new Conta(3,10.0,new Cliente("Maria", "12342378091"));
+	    Conta c2 = new Conta("2",5.0,new Cliente("PEDRO", "12345678091"));
+	    Conta c3 = new Conta("3",10.0,new Cliente("Maria", "12342378091"));
 	    
 	    System.out.println("\nAntes\n");
 	    System.out.println(c2.toString());
@@ -61,13 +61,17 @@ public class Conta {
 	    
 	}
 
-	public long getNumero() {
+	
+
+	public String getNumero() {
 		return numero;
 	}
 
-	public void setNumero(long numero) {
+
+	public void setNumero(String numero) {
 		this.numero = numero;
 	}
+
 
 	public double getSaldo() {
 		return saldo;
@@ -113,5 +117,9 @@ public class Conta {
 			System.out.println(this.getCliente().getNome()+ "  você não tem saldo suficiente!" );
 		}
 	}	
+	
+	public void imprimirConta(){
+		System.out.println(this.toString());
+	}
 
 }
