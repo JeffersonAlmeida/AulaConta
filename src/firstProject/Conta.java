@@ -1,32 +1,19 @@
 package firstProject;
 
-public class Conta {
-	
-	private String numero;
-	private double saldo;
-	private Cliente cliente;
-	
-	
+public class Conta extends ContaAbstract{
+		
 	public Conta(){
 		super();
-	}
-	
+	}	
 
-	public Conta(String n, double s, Cliente c){
-		this.numero = n;
-		this.saldo = s;
-		this.cliente = c;
-	}
-	
 	public Conta(String n, Cliente c){
-		this.numero = n;
-		this.cliente = c;
+		super(n, c);
 	}
 	
+	public Conta(String n, double s, Cliente c){
+		super(n, s, c);
+	}
 	
-	/**
-	 * @param args
-	 */
 	public static void main(String[] args) {
 	
 	    Conta conta = new Conta();
@@ -56,46 +43,17 @@ public class Conta {
 	    
 	    
 	    System.out.println(" Case1: saldo Insuficiente:\n");
-	    c2.transferir(3.0, c3); // transferencia
+	    c2.transferir(3.0, c3); // transferencia	    
 	    
-	    
-	}
-
-	
-
-	public String getNumero() {
-		return numero;
-	}
-
-
-	public void setNumero(String numero) {
-		this.numero = numero;
-	}
-
-
-	public double getSaldo() {
-		return saldo;
-	}
-
-	public void setSaldo(double saldo) {
-		this.saldo = saldo;
-	}
-
-	public Cliente getCliente() {
-		return cliente;
-	}
-
-	public void setCliente(Cliente cliente) {
-		this.cliente = cliente;
-	}
+	}	
 	
 	public void creditar(double valor){
-		this.saldo += valor;
+		this.setSaldo(this.getSaldo() + valor);
 	}
 	
 	public void debitar(double valor){
 		if(this.getSaldo()>=valor){
-			this.saldo -= valor;
+			this.setSaldo(this.getSaldo() - valor);
 		}else{
 			System.out.println(this.getCliente().getNome()+ "  você não tem saldo suficiente!" );
 		}		
@@ -104,8 +62,8 @@ public class Conta {
 
 	@Override
 	public String toString() {
-		return "Conta [numero=" + numero + ", saldo=" + saldo + ", cliente="
-				+ cliente + "]";
+		return "Conta [numero=" + getNumero() + ", saldo=" + getSaldo() + ", cliente="
+				+ getCliente() + "]";
 	}
 	
 	
