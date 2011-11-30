@@ -8,7 +8,7 @@ public class CadastroCliente {
 		repositorioCliente = new RepositorioClienteArray();
 	}
 	
-	public void cadastrar(Cliente c){
+	public void cadastrar(Cliente c)throws ClienteCadastradoException{
 		this.repositorioCliente.inserirCliente(c);
 	}
 	

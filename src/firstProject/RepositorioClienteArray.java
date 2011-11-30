@@ -70,7 +70,11 @@ public class RepositorioClienteArray implements IRepositorioCliente {
 	    Cliente  cliente = new Cliente("JJ","12345678910");
 	    System.out.println(cliente.toString());
 	    
-	    repositorioClienteArray.inserirCliente(cliente);
+	    try {
+			repositorioClienteArray.inserirCliente(cliente);
+		} catch (ClienteCadastradoException e) {
+			e.imprimeMensagem();
+		}
 	    
 	    int indice = repositorioClienteArray.procurarIndice("12345678910");
 	    System.out.println("Indice = " + indice);
@@ -138,9 +142,13 @@ public class RepositorioClienteArray implements IRepositorioCliente {
 
 	
 	@Override
-	public void inserirCliente(Cliente cliente){
-		this.clientes.add(cliente);
-		this.indice++;
+	public void inserirCliente(Cliente cliente)throws ClienteCadastradoException{
+		if(!existeCliente(cliente.getCpf())){
+			this.clientes.add(cliente);
+			this.indice++;
+		}else {
+			throw new ClienteCadastradoException(cliente);
+		}		
 	}
 
 	

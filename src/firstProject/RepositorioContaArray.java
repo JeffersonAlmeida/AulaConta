@@ -37,9 +37,6 @@ public class RepositorioContaArray implements IRepositorioConta {
 		 return false;
 	}
 		
-	
-	
-	
 	public int getIndice() {
 		return indice;
 	}
@@ -76,7 +73,11 @@ public class RepositorioContaArray implements IRepositorioConta {
 		conta.setCliente(cliente);
 		conta.setNumero("xxx");
 		
-		repositorioContaArray.inserirConta(conta);
+		try {
+			repositorioContaArray.inserirConta(conta);
+		} catch (ContaCadastradaException e) {
+			e.imprime();
+		}
 		
 		int indiceRetorno = repositorioContaArray.procurarIndice("xxx");
 		System.out.println("indice retorno = " + indiceRetorno);
@@ -104,9 +105,13 @@ public class RepositorioContaArray implements IRepositorioConta {
 	}
 
 	@Override
-	public void inserirConta(ContaAbstract conta) {
-		this.contas.add(conta);
-		this.indice++;
+	public void inserirConta(ContaAbstract conta) throws ContaCadastradaException {
+		if(!exiteConta(conta.getNumero())){
+			this.contas.add(conta);
+			this.indice++;
+		}else {
+			throw new ContaCadastradaException(conta);
+		}		
 	}
 
 	@Override

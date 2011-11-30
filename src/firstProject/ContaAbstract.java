@@ -46,7 +46,7 @@ public abstract class ContaAbstract {
 	}
 	 
 	
-	public void transferir(double valor, Conta c){
+	public void transferir(double valor, Conta c) throws SaldoInsuficienteExcecao{
 		if(this.getSaldo()>=valor){
 			this.debitar(valor); // debitar da conta origem
 			c.setSaldo(c.getSaldo()+valor); // conta destion recebe o valor debitado. saldo anterior + valor
@@ -55,9 +55,9 @@ public abstract class ContaAbstract {
 		}
 	}	
 	
-	public abstract void debitar(double valor);
+	public abstract void debitar(double valor) throws SaldoInsuficienteExcecao;
 	
-	public void transferir(ContaAbstract conta, double valor){
+	public void transferir(ContaAbstract conta, double valor) throws SaldoInsuficienteExcecao{
 		this.debitar(valor);
 		conta.creditar(valor);
 	}

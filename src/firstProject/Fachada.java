@@ -34,7 +34,7 @@ public class Fachada {
 	
 	// Cliente
 	
-	public void cadastrarCliente(Cliente c){
+	public void cadastrarCliente(Cliente c) throws ClienteCadastradoException{
 		this.cadastroCliente.cadastrar(c);
 	}
 	public void removerCliente(Cliente c){
@@ -50,7 +50,7 @@ public class Fachada {
 	
 	//// Conta
 		
-	public void cadastrarConta(ContaAbstract c){
+	public void cadastrarConta(ContaAbstract c)throws ContaCadastradaException{
 		this.cadastroConta.cadastrar(c);
 	}
 	public void removerConta(ContaAbstract c){
@@ -71,11 +71,15 @@ public class Fachada {
 	
 	// Main
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) throws ContaCadastradaException {
 		
 		 Fachada fachada = Fachada.getInstance();
 		 Cliente c = new Cliente("Jefferson", "xxx");
-		 fachada.cadastrarCliente(c);
+		 try {
+			fachada.cadastrarCliente(c);
+		} catch (ClienteCadastradoException e) {
+		    e.imprimeMensagem();
+		}
 		 
 		 Cliente cliente = fachada.procurarCliente(c.getCpf());
 		 if(cliente!=null){
@@ -95,9 +99,6 @@ public class Fachada {
 		 }else{
 			 System.out.println("Erro: Conta não existente!");
 		 }
-		 
-		 
-		 
 	}
 
 }

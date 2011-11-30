@@ -4,7 +4,7 @@ public class CadastroConta {
 
 	private IRepositorioConta repositorioContaArray;
 	
-	public void cadastrar(ContaAbstract c){
+	public void cadastrar(ContaAbstract c) throws ContaCadastradaException{
 		repositorioContaArray.inserirConta(c);
 	}
 	
