@@ -15,11 +15,7 @@ public class RepositorioClienteArray implements IRepositorioCliente {
 		clientes = new ArrayList<>();
 	}
 	
-	public void inserir(Cliente cliente){
-		this.clientes.add(cliente);
-		this.indice++;
-	}
-	
+		
 	public int procurarIndice(String cpf){
 		int indiceRetorno = -1;
 		boolean cpfEncontrado = false;
@@ -56,24 +52,6 @@ public class RepositorioClienteArray implements IRepositorioCliente {
 	}
 	
 	
-	public void atualizar(Cliente cliente){
-		Cliente clienteRetorno = procurar(cliente.getCpf());
-		if(clienteRetorno!=null){
-			clienteRetorno.setNome(cliente.getNome());
-			clienteRetorno.setCpf(cliente.getCpf());
-		}else{
-			System.out.println("ERRO: Cliente nao existe!");
-		}
-	}
-	
-	public void remover(String cpf){
-		int retorno = this.procurarIndice(cpf);
-		if(retorno!=-1){
-			this.clientes.remove(retorno);
-		}else{
-			System.out.println("ERRO: Cliente nao existe!");
-		}
-	}
 	
 	@Override
 	public String toString() {
@@ -92,7 +70,7 @@ public class RepositorioClienteArray implements IRepositorioCliente {
 	    Cliente  cliente = new Cliente("JJ","12345678910");
 	    System.out.println(cliente.toString());
 	    
-	    repositorioClienteArray.inserir(cliente);
+	    repositorioClienteArray.inserirCliente(cliente);
 	    
 	    int indice = repositorioClienteArray.procurarIndice("12345678910");
 	    System.out.println("Indice = " + indice);
@@ -104,12 +82,12 @@ public class RepositorioClienteArray implements IRepositorioCliente {
 	    
 	    System.out.println("Atualizar Cliente :: ");
 	    Cliente clienteNovo = new Cliente("Jefferson", "12345678910");
-	    repositorioClienteArray.atualizar(clienteNovo);
+	    repositorioClienteArray.atualizarCliente(clienteNovo);
 	    
 	    repositorioClienteArray.imprimeRepositorioCliente();
 	    
 	    
-	    repositorioClienteArray.remover("12345678910");
+	    repositorioClienteArray.removerCliente("12345678910");
 	    
 	    repositorioClienteArray.imprimeRepositorioCliente();
 	    
@@ -158,22 +136,35 @@ public class RepositorioClienteArray implements IRepositorioCliente {
 		RepositorioClienteArray.tamanhoCache = tamanhoCache;
 	}
 
+	
 	@Override
-	public void inserirCliente(Cliente c) {
-		// TODO Auto-generated method stub
-		
+	public void inserirCliente(Cliente cliente){
+		this.clientes.add(cliente);
+		this.indice++;
 	}
 
+	
 	@Override
-	public void atualizarCliente(Cliente c) {
-		// TODO Auto-generated method stub
-		
+	public void atualizarCliente(Cliente cliente){
+		Cliente clienteRetorno = procurar(cliente.getCpf());
+		if(clienteRetorno!=null){
+			clienteRetorno.setNome(cliente.getNome());
+			clienteRetorno.setCpf(cliente.getCpf());
+		}else{
+			System.out.println("ERRO: Cliente nao existe!");
+		}
 	}
 
+	
+
 	@Override
-	public void removerCliente(String cpf) {
-		// TODO Auto-generated method stub
-		
+	public void removerCliente(String cpf){
+		int retorno = this.procurarIndice(cpf);
+		if(retorno!=-1){
+			this.clientes.remove(retorno);
+		}else{
+			System.out.println("ERRO: Cliente nao existe!");
+		}
 	}
 
 	

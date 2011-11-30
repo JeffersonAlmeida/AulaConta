@@ -2,7 +2,6 @@ package firstProject;
 
 public abstract class ContaAbstract {
 
-
 	private double saldo;
 	private Cliente cliente;	
 	protected String numero;
@@ -46,9 +45,15 @@ public abstract class ContaAbstract {
 		this.cliente = cliente;
 	}
 	 
-	public void creditar(double valor){
-		this.saldo +=valor;
-	}
+	
+	public void transferir(double valor, Conta c){
+		if(this.getSaldo()>=valor){
+			this.debitar(valor); // debitar da conta origem
+			c.setSaldo(c.getSaldo()+valor); // conta destion recebe o valor debitado. saldo anterior + valor
+		}else{
+			System.out.println(this.getCliente().getNome()+ "  você não tem saldo suficiente!" );
+		}
+	}	
 	
 	public abstract void debitar(double valor);
 	
@@ -57,6 +62,14 @@ public abstract class ContaAbstract {
 		conta.creditar(valor);
 	}
 	
+	public void creditar(double valor){
+		this.setSaldo(this.getSaldo() + valor);
+	}
+	
+
+	public void imprimirConta(){
+		System.out.println(this.toString());
+	}
 	
 	
 

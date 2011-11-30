@@ -4,18 +4,18 @@ public class CadastroConta {
 
 	private IRepositorioConta repositorioContaArray;
 	
-	public void cadastrar(Conta c){
+	public void cadastrar(ContaAbstract c){
 		repositorioContaArray.inserirConta(c);
 	}
 	
-	public void remover(Conta c){
+	public void remover(ContaAbstract c){
 		repositorioContaArray.removerConta(c.getNumero());
 	}
 	
-	public Conta procurar(String numeroConta){
+	public ContaAbstract procurar(String numeroConta){
 		return repositorioContaArray.procurarConta(numeroConta);
 	}
-	public void atualizar(Conta conta){
+	public void atualizar(ContaAbstract conta){
 		repositorioContaArray.atualizarConta(conta);
 	}
 	

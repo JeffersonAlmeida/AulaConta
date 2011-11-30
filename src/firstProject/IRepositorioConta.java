@@ -2,10 +2,10 @@ package firstProject;
 
 public interface IRepositorioConta {
 	
-	public void inserirConta(Conta conta);
-	public void atualizarConta(Conta conta);
+	public void inserirConta(ContaAbstract conta);
+	public void atualizarConta(ContaAbstract conta);
 	public void removerConta(String numero);
-	public Conta procurarConta(String numeroConta);
+	public ContaAbstract procurarConta(String numeroConta);
 	
 	
 }

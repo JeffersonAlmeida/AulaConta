@@ -47,9 +47,7 @@ public class Conta extends ContaAbstract{
 	    
 	}	
 	
-	public void creditar(double valor){
-		this.setSaldo(this.getSaldo() + valor);
-	}
+
 	
 	public void debitar(double valor){
 		if(this.getSaldo()>=valor){
@@ -75,10 +73,6 @@ public class Conta extends ContaAbstract{
 			System.out.println(this.getCliente().getNome()+ "  você não tem saldo suficiente!" );
 		}
 	}	
-	
-	public void imprimirConta(){
-		System.out.println(this.toString());
-	}
 	
 	
 

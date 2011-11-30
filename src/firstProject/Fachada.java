@@ -50,18 +50,18 @@ public class Fachada {
 	
 	//// Conta
 		
-	public void cadastrarConta(Conta c){
+	public void cadastrarConta(ContaAbstract c){
 		this.cadastroConta.cadastrar(c);
 	}
-	public void removerConta(Conta c){
+	public void removerConta(ContaAbstract c){
 		this.cadastroConta.remover(c);
 	}
 	
-	public Conta procurarconta(String numeroConta){
+	public ContaAbstract procurarconta(String numeroConta){
 		return this.cadastroConta.procurar(numeroConta);
 	}
 	
-	public void atualizarConta(Conta conta){
+	public void atualizarConta(ContaAbstract conta){
 		this.cadastroConta.atualizar(conta);
 	}
 	
@@ -89,7 +89,7 @@ public class Fachada {
 		 
 		 fachada.cadastrarConta(conta);
 		 
-		 Conta contaRetorno = fachada.procurarconta("xxx");
+		 ContaAbstract contaRetorno = fachada.procurarconta("xxx");
 		 if(contaRetorno!=null){
 			 contaRetorno.imprimirConta();
 		 }else{

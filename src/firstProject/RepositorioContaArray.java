@@ -5,7 +5,7 @@ import java.util.Iterator;
 
 public class RepositorioContaArray implements IRepositorioConta {
 
-	private ArrayList<Conta> contas;
+	private ArrayList<ContaAbstract> contas;
 	private int indice;
 	private static int tamanhoCache = 100;
 	
@@ -20,7 +20,7 @@ public class RepositorioContaArray implements IRepositorioConta {
 		boolean cpfEncontrado = false;
 		int i = 0;
 		while((i<this.contas.size())&&(!cpfEncontrado)){
-			Conta conta = this.contas.get(i);
+			ContaAbstract conta = this.contas.get(i);
 			if(conta.getNumero().equals(numero)){
 				indiceRetorno = i;
 				cpfEncontrado = true;
@@ -38,13 +38,7 @@ public class RepositorioContaArray implements IRepositorioConta {
 	}
 		
 	
-	public ArrayList<Conta> getContas() {
-		return contas;
-	}
-
-	public void setContas(ArrayList<Conta> contas) {
-		this.contas = contas;
-	}
+	
 	
 	public int getIndice() {
 		return indice;
@@ -67,7 +61,7 @@ public class RepositorioContaArray implements IRepositorioConta {
 	
 	public void imprimirRepositorioConta(){
 		System.out.println("\nTodas as contas :: \n");
-		Iterator<Conta> i  =this.contas.iterator();
+		Iterator<ContaAbstract> i  =this.contas.iterator();
 		while (i.hasNext()) {
 			Conta conta = (Conta) i.next();
 			conta.imprimirConta();
@@ -99,7 +93,7 @@ public class RepositorioContaArray implements IRepositorioConta {
 		
 		System.out.println("Procurar Conta:: \n");
 		
-		Conta contaRetorno = repositorioContaArray.procurarConta("xxx");
+		ContaAbstract contaRetorno = repositorioContaArray.procurarConta("xxx");
 		if(contaRetorno!=null){
 			contaRetorno.imprimirConta();
 		}else{
@@ -110,14 +104,14 @@ public class RepositorioContaArray implements IRepositorioConta {
 	}
 
 	@Override
-	public void inserirConta(Conta conta) {
+	public void inserirConta(ContaAbstract conta) {
 		this.contas.add(conta);
 		this.indice++;
 	}
 
 	@Override
-	public void atualizarConta(Conta conta) {
-		Conta contaRetorno = procurarConta(conta.getNumero());
+	public void atualizarConta(ContaAbstract conta) {
+		ContaAbstract contaRetorno = procurarConta(conta.getNumero());
 		 if(contaRetorno!=null){
 			 contaRetorno.setCliente(conta.getCliente());
 			 contaRetorno.setNumero(conta.getNumero());
@@ -139,8 +133,8 @@ public class RepositorioContaArray implements IRepositorioConta {
 	}
 
 	@Override
-	public Conta procurarConta(String numeroConta){
-		Conta conta = null;
+	public ContaAbstract procurarConta(String numeroConta){
+		ContaAbstract conta = null;
 		int retorno = procurarIndice(numeroConta);
 		if(retorno!=-1){
 			conta = this.contas.get(retorno);
