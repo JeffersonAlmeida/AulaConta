@@ -2,21 +2,21 @@ package firstProject;
 
 public class CadastroConta {
 
-	private RepositorioContaArray repositorioContaArray;
+	private IRepositorioConta repositorioContaArray;
 	
 	public void cadastrar(Conta c){
-		repositorioContaArray.inserir(c);
+		repositorioContaArray.inserirConta(c);
 	}
 	
 	public void remover(Conta c){
-		repositorioContaArray.remover(c.getNumero());
+		repositorioContaArray.removerConta(c.getNumero());
 	}
 	
 	public Conta procurar(String numeroConta){
 		return repositorioContaArray.procurarConta(numeroConta);
 	}
 	public void atualizar(Conta conta){
-		repositorioContaArray.atualizar(conta);
+		repositorioContaArray.atualizarConta(conta);
 	}
 	
 	
@@ -29,12 +29,6 @@ public class CadastroConta {
 	public static void main(String[] args) {
 		
 
-	}
-
-
-
-	public RepositorioContaArray getRepositorioContaArray() {
-		return repositorioContaArray;
 	}
 
 	public void setRepositorioContaArray(RepositorioContaArray repositorioContaArray) {

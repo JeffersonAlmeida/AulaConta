@@ -3,7 +3,7 @@ package firstProject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class RepositorioClienteArray {
+public class RepositorioClienteArray implements IRepositorioCliente {
 
 	
 	private ArrayList<Cliente> clientes;
@@ -157,5 +157,25 @@ public class RepositorioClienteArray {
 	public static void setTamanhoCache(int tamanhoCache) {
 		RepositorioClienteArray.tamanhoCache = tamanhoCache;
 	}
+
+	@Override
+	public void inserirCliente(Cliente c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void atualizarCliente(Cliente c) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	@Override
+	public void removerCliente(String cpf) {
+		// TODO Auto-generated method stub
+		
+	}
+
+	
 
 }

@@ -3,7 +3,7 @@ package firstProject;
 import java.util.ArrayList;
 import java.util.Iterator;
 
-public class RepositorioContaArray {
+public class RepositorioContaArray implements IRepositorioConta {
 
 	private ArrayList<Conta> contas;
 	private int indice;
@@ -14,10 +14,6 @@ public class RepositorioContaArray {
 		this.indice = 0;
 	}
 	
-	public void inserir(Conta conta){
-		this.contas.add(conta);
-		this.indice++;
-	}
 	
 	public int procurarIndice(String numero){
 		int indiceRetorno = -1;
@@ -40,35 +36,7 @@ public class RepositorioContaArray {
 		 }
 		 return false;
 	}
-	
-	public Conta procurarConta(String numeroConta){
-		Conta conta = null;
-		int retorno = procurarIndice(numeroConta);
-		if(retorno!=-1){
-			conta = this.contas.get(retorno);
-		}
-		return conta;
-	}
-	
-	public void atualizar(Conta conta){
-		 Conta contaRetorno = procurarConta(conta.getNumero());
-		 if(contaRetorno!=null){
-			 contaRetorno.setCliente(conta.getCliente());
-			 contaRetorno.setNumero(conta.getNumero());
-			 contaRetorno.setSaldo(conta.getSaldo());
-		 }else{
-			 System.out.println("ERRO: Conta nao existe!");
-		 }
-	}
-	
-	public void remover(String numero){
-		int retorno = this.procurarIndice(numero);
-		if(retorno!=-1){
-			this.contas.remove(retorno);
-		}else{
-			System.out.println("ERRO: Conta nao existe!");
-		}
-	}
+		
 	
 	public ArrayList<Conta> getContas() {
 		return contas;
@@ -114,18 +82,18 @@ public class RepositorioContaArray {
 		conta.setCliente(cliente);
 		conta.setNumero("xxx");
 		
-		repositorioContaArray.inserir(conta);
+		repositorioContaArray.inserirConta(conta);
 		
 		int indiceRetorno = repositorioContaArray.procurarIndice("xxx");
 		System.out.println("indice retorno = " + indiceRetorno);
 		
 		conta.setSaldo(2000.0);
 		
-		repositorioContaArray.atualizar(conta);
+		repositorioContaArray.atualizarConta(conta);
 		
 		repositorioContaArray.imprimirRepositorioConta();
 		
-		repositorioContaArray.remover("xxx1");
+		repositorioContaArray.removerConta("xxx1");
 		
 		repositorioContaArray.imprimirRepositorioConta();
 		
@@ -139,6 +107,45 @@ public class RepositorioContaArray {
 		}
 		
 		repositorioContaArray.imprimirRepositorioConta();
+	}
+
+	@Override
+	public void inserirConta(Conta conta) {
+		this.contas.add(conta);
+		this.indice++;
+	}
+
+	@Override
+	public void atualizarConta(Conta conta) {
+		Conta contaRetorno = procurarConta(conta.getNumero());
+		 if(contaRetorno!=null){
+			 contaRetorno.setCliente(conta.getCliente());
+			 contaRetorno.setNumero(conta.getNumero());
+			 contaRetorno.setSaldo(conta.getSaldo());
+		 }else{
+			 System.out.println("ERRO: Conta nao existe!");
+		 }
+		
+	}
+
+	@Override
+	public void removerConta(String numero){
+		int retorno = this.procurarIndice(numero);
+		if(retorno!=-1){
+			this.contas.remove(retorno);
+		}else{
+			System.out.println("ERRO: Conta nao existe!");
+		}
+	}
+
+	@Override
+	public Conta procurarConta(String numeroConta){
+		Conta conta = null;
+		int retorno = procurarIndice(numeroConta);
+		if(retorno!=-1){
+			conta = this.contas.get(retorno);
+		}
+		return conta;
 	}
 
 }

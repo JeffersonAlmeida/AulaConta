@@ -2,35 +2,31 @@ package firstProject;
 
 public class CadastroCliente {
 
-	private RepositorioClienteArray repositorioClienteArray;
+	private IRepositorioCliente repositorioCliente;
 	
 	public CadastroCliente(){
-		repositorioClienteArray = new RepositorioClienteArray();
+		repositorioCliente = new RepositorioClienteArray();
 	}
 	
 	public void cadastrar(Cliente c){
-		this.repositorioClienteArray.inserir(c);
+		this.repositorioCliente.inserirCliente(c);
 	}
 	
 	public void remover(Cliente c){
-		this.repositorioClienteArray.remover(c.getCpf());
+		this.repositorioCliente.removerCliente(c.getCpf());
 	}
 	
-	
-	public RepositorioClienteArray getClienteArray() {
-		return repositorioClienteArray;
-	}
 
 	public void setClienteArray(RepositorioClienteArray clienteArray) {
-		this.repositorioClienteArray = clienteArray;
+		this.repositorioCliente = clienteArray;
 	}
 	
 	public Cliente procurar(String cpf){
-		return this.repositorioClienteArray.procurar(cpf);
+		return this.repositorioCliente.procurar(cpf);
 	}
 	
 	public void atualizar(Cliente cliente){
-		this.repositorioClienteArray.atualizar(cliente);
+		this.repositorioCliente.atualizarCliente(cliente);
 	}
 	
 	public static void main(String[] args) {
